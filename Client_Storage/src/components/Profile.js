@@ -29,7 +29,7 @@ class Profile extends Component {
   }
 
   getFiles() {
-    console.log("files callled");
+    console.log("files being called");
     let userName = this.props.uname;
     axios
       .get("/getContent/" + userName)
@@ -45,33 +45,48 @@ class Profile extends Component {
   }
 
   async onFileDownload(fileName) {
-    console.log("files download called");
+    console.log("files being Downloaded..");
     let userName = this.props.uname;
-    await axios
-      .get("/downloadFile/" + userName + "/" + fileName)
-      .then((res) => {
-        console.log(res.data);
-        saveAs("https://" + res.data, fileName);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-  }
+    let file;
+      if(userName == "Admin"){
+      file =  fileName}
+      else
+      {
+        file = userName + "/" + fileName
+      }
+      await axios
+        .get("/downloadFile/"+ file)
+        .then((res) => {
+          console.log(res.data);
+          saveAs("https://" + res.data, fileName);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    }
 
   async onFileDelete(fileName) {
     console.log("Delete File");
     let userName = this.props.uname;
-    await axios
-      .get("/deleteFile/" + userName + "/" + fileName)
-      .then((res) => {
-        console.log(res);
-        this.getFiles();
+    let file;
+      if(userName == "Admin"){
+      file =  fileName}
+      else
+      {
+        file = userName + "/" + fileName
       }
-      )
-      .catch((error) => {
-        console.error("There was an error!, In the deletefile opp", error);
-      });
-  };
+         await axios
+         // console.log("filename =",fileName)
+        .get("/deleteFile/" + file)
+        .then((res) => {
+          console.log(res);
+            this.getFiles();
+          }
+        )
+        .catch((error) => {
+          console.error("There was an error!, In the deletefile opp", error);
+        });
+      };
 
 
   onFileChange = (event) => {
@@ -133,7 +148,7 @@ class Profile extends Component {
             <div>
               <input type="file" onChange={this.onFileChange} />
               <button className="selectButton" onClick={this.onFileUpload}>Upload Files to S3</button>
-              {this.state.uploaded ? <p> Uploaded successfully !</p> : null}
+              {this.state.uploaded ? <p> Uploaded successfully </p> : null}
             </div>
             <br />
             <Table className="tableDesign">

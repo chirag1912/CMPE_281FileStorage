@@ -1,11 +1,13 @@
 var express = require("express");
 var app = express();
+
 var path = require("path");
 var dotenv = require("dotenv").config();
 var routes = require("./routes");
+
 var session = require("express-session");
 const cors = require("cors");
-var bodyParser = require("body-parser");
+// var bodyParser = require("body-parser");
 
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));

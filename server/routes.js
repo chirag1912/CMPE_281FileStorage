@@ -1,6 +1,6 @@
-var express = require("express"); //Using exoress to get and receive api calls;
+var express = require("express"); //Using express to get and receive api calls;
 var router = express.Router();
-var aws = require("aws-sdk"); //change aws to AWS
+var aws = require("aws-sdk"); //using aws-sdk to get and store s3 objects
 var multer = require("multer");
 var multerS3 = require("multer-s3");
 var registerController = require("./controller/register");
@@ -29,8 +29,8 @@ router.post("/authenticate", authenticateController.authenticate);
 
 //Get filenames
 router.get("/getContent/:uname", (req, res) => {
-  var params = { ...bucketParams, Prefix: folderName };
-  if (req.params["uname"] == "allusers"){ //admin
+  var params = { ...bucketParams};
+  if (req.params["uname"] == "Admin"){ //admin
     s3.listObjects(params, function (err, data) {
       if (err) {
         console.log("Error", err);
@@ -103,7 +103,7 @@ function getFileLink(filename) {
 //download
 router.get("/downloadFile/:uname/:fileName", async function (req, res) {
   console.log("in get");
-  if (req.params["uname"] == "allusers") //admin
+  if (req.params["uname"] == "Admin") //admin
   {
     var file = await getFileLink(req.params.fileName);
     console.log(file);
@@ -120,9 +120,9 @@ router.get("/downloadFile/:uname/:fileName", async function (req, res) {
 
 //for delete
 router.get("/deleteFile/:uname/:fileName", function (req, res) {
-  console.log("delete node 1");
-  console.log(req.body);
-  if (req.params["uname"] == "allusers") //admin
+  // console.log("delete node 1");
+  console.log(req);
+  if (req.params["uname"] == "Admin") //admin
   {
     var params = {
       Bucket: "filestoragebucketcmpe281",

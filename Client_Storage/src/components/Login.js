@@ -102,6 +102,7 @@ class Login extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
     };
+
     console.log(user2);
     const requestOptions = {
       method: "POST",
@@ -129,8 +130,17 @@ class Login extends Component {
           <Profile uname={this.state.uname} />
         ) : (
           <div>
+            <ul>
+              <h1 className="headerDesign">Welcome to S3 Storage Solutions!</h1>
+                  {/* <li><a class="active" href="#">Welcome to S3 Storage Solutions!</a></li> */}
+            </ul>
             {isSignUpClicked ? (
+              <>
+              {/* <h1 className="headerDesign">Welcome to S3 Storage Solutions!</h1> */}
+
               <div className="loginbox">
+                
+
                 <h1>Login Page</h1>
                 <p> User name </p>
                 <input
@@ -157,8 +167,8 @@ class Login extends Component {
                   name="login"
                   value="Login"
                   onClick={this.handleSubmitSignUp}
-                  // onClick={this.handleSignUp}           //1st Change   
-                  // onClick={this.handleSubmitLogin}     //originally
+                // onClick={this.handleSignUp}           //1st Change   
+                // onClick={this.handleSubmitLogin}     //originally
                 />
                 <input
                   type="submit"
@@ -171,6 +181,7 @@ class Login extends Component {
 
                 <br />
               </div>
+              </>
             ) : (
               <div className="signup">
                 <h1>Sign Up as New User</h1>

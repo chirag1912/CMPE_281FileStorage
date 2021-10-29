@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 
 const db = mysql.createConnection({
-  host: process.env.HOST,
+  host: process.env.HOST,     
   user: process.env.USER,
   port:  '3306',
   password: process.env.PASSWORD,
@@ -10,7 +10,7 @@ const db = mysql.createConnection({
 
 db.connect(function (err) {
   if (err) throw err;
-  console.log("Connected!");
+  console.log("Connected to the Database Instance");
 });
 
 module.exports.authenticate = function (req, res) {
