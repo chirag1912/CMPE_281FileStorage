@@ -3,14 +3,19 @@ var mysql = require("mysql");
 const db = mysql.createConnection({
   host: process.env.HOST,     
   user: process.env.USER,
+  ssl: true,
   port:  '3306',
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
 });
 
+console.log("This is DB",db);
+
+
 db.connect(function (err) {
   if (err) throw err;
   console.log("Connected to db on registration");
+
 });
 
 module.exports.register = function (req, res) {
