@@ -21,7 +21,7 @@ var bucketParams = {
   Bucket: "filestoragebucketcmpe281",
 };
 
-router.get("/", (req, res) => {});
+router.get("http://54.82.44.30:3000/", (req, res) => {});
 
 /* route to handle login and registration */
 router.post("/register", registerController.register);
