@@ -166,7 +166,7 @@ class Login extends Component {
                   id="login"
                   name="login"
                   value="Login"
-                onClick={this.handleSubmitLogin}    //Login to User/Admin
+                onClick={this.handleSubmitSignUp}    //Login to User/Admin
                 />
                 <input
                   type="submit"
