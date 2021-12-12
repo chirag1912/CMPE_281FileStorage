@@ -7,8 +7,7 @@
 
 ## Test Credentials:
 ```
-Username: Admin
-Password: Rajp123
+Admin: Rajp123
 ```
 
 ## Architecture Diagram:
