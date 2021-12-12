@@ -7,7 +7,7 @@
 
 ## Test Credentials:
 ```
-UserName: Admin
+Username: Admin
 Password: Rajp123
 ```
 
